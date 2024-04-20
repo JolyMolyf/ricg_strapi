@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lectureparts",
+  "info": {
+    "singularName": "lecturepart",
+    "pluralName": "lectureparts",
+    "displayName": "Lecture Part",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "lecture": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::lecture.lecture",
+      "inversedBy": "lecture_parts"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

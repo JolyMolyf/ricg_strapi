@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "eventdates",
+  "info": {
+    "singularName": "eventdate",
+    "pluralName": "eventdates",
+    "displayName": "EventDate",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "datetime"
+    },
+    "webinar": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::webinar.webinar",
+      "inversedBy": "event_dates"
+    }
+  }
+}
