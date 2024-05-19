@@ -4,7 +4,8 @@
   "info": {
     "singularName": "lecture",
     "pluralName": "lectures",
-    "displayName": "Lecture"
+    "displayName": "Lecture",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,20 +19,27 @@
       "type": "string"
     },
     "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "lecture_parts": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::lecturepart.lecturepart",
       "mappedBy": "lecture"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "redeemedPrice": {
+      "type": "integer"
     }
   }
 }

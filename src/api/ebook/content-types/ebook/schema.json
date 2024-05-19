@@ -17,6 +17,43 @@
     },
     "description": {
       "type": "text"
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "content": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "parts": {
+      "type": "json"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "ebooks"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "redeemedPrice": {
+      "type": "integer"
+    },
+    "audience": {
+      "type": "richtext"
     }
   }
 }

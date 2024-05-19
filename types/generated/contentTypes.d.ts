@@ -838,6 +838,56 @@ export interface PluginStrapiGoogleAuthGoogleCredential
   };
 }
 
+export interface ApiAuthorAuthor extends Schema.CollectionType {
+  collectionName: 'authors';
+  info: {
+    singularName: 'author';
+    pluralName: 'authors';
+    displayName: 'Author';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    surname: Attribute.String;
+    image: Attribute.Media;
+    ebooks: Attribute.Relation<
+      'api::author.author',
+      'oneToMany',
+      'api::ebook.ebook'
+    >;
+    description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbarBalloon';
+        }
+      >;
+    webinars: Attribute.Relation<
+      'api::author.author',
+      'oneToMany',
+      'api::webinar.webinar'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::author.author',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::author.author',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiEbookEbook extends Schema.CollectionType {
   collectionName: 'ebooks';
   info: {
@@ -852,6 +902,17 @@ export interface ApiEbookEbook extends Schema.CollectionType {
   attributes: {
     title: Attribute.String;
     description: Attribute.Text;
+    coverImage: Attribute.Media;
+    content: Attribute.Media;
+    parts: Attribute.JSON;
+    author: Attribute.Relation<
+      'api::ebook.ebook',
+      'manyToOne',
+      'api::author.author'
+    >;
+    price: Attribute.Integer;
+    redeemedPrice: Attribute.Integer;
+    audience: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -888,6 +949,7 @@ export interface ApiEventdateEventdate extends Schema.CollectionType {
       'manyToOne',
       'api::webinar.webinar'
     >;
+    url: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -906,12 +968,55 @@ export interface ApiEventdateEventdate extends Schema.CollectionType {
   };
 }
 
+export interface ApiImagetextsectionImagetextsection
+  extends Schema.CollectionType {
+  collectionName: 'imagetextsections';
+  info: {
+    singularName: 'imagetextsection';
+    pluralName: 'imagetextsections';
+    displayName: 'ImageTextSection';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    reverse: Attribute.Boolean;
+    image: Attribute.Media;
+    description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'standard';
+        }
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::imagetextsection.imagetextsection',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::imagetextsection.imagetextsection',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLectureLecture extends Schema.CollectionType {
   collectionName: 'lectures';
   info: {
     singularName: 'lecture';
     pluralName: 'lectures';
     displayName: 'Lecture';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -925,6 +1030,8 @@ export interface ApiLectureLecture extends Schema.CollectionType {
       'oneToMany',
       'api::lecturepart.lecturepart'
     >;
+    price: Attribute.Integer;
+    redeemedPrice: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1025,6 +1132,100 @@ export interface ApiOrderOrder extends Schema.CollectionType {
   };
 }
 
+export interface ApiPartnerPartner extends Schema.CollectionType {
+  collectionName: 'partners';
+  info: {
+    singularName: 'partner';
+    pluralName: 'partners';
+    displayName: 'Partner';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::partner.partner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::partner.partner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSpecialtySpecialty extends Schema.CollectionType {
+  collectionName: 'specialties';
+  info: {
+    singularName: 'specialty';
+    pluralName: 'specialties';
+    displayName: 'speciality';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.RichText;
+    image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::specialty.specialty',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::specialty.specialty',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTiktokTiktok extends Schema.CollectionType {
+  collectionName: 'tiktoks';
+  info: {
+    singularName: 'tiktok';
+    pluralName: 'tiktoks';
+    displayName: 'TikTok';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    tiktokLink: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tiktok.tiktok',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tiktok.tiktok',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiWebinarWebinar extends Schema.CollectionType {
   collectionName: 'webinars';
   info: {
@@ -1045,6 +1246,16 @@ export interface ApiWebinarWebinar extends Schema.CollectionType {
       'oneToMany',
       'api::eventdate.eventdate'
     >;
+    price: Attribute.Integer;
+    redeemedPrice: Attribute.Integer;
+    cardPoints: Attribute.JSON;
+    bulletPoints: Attribute.JSON;
+    author: Attribute.Relation<
+      'api::webinar.webinar',
+      'manyToOne',
+      'api::author.author'
+    >;
+    audience: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1082,11 +1293,16 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::strapi-google-auth.google-credential': PluginStrapiGoogleAuthGoogleCredential;
+      'api::author.author': ApiAuthorAuthor;
       'api::ebook.ebook': ApiEbookEbook;
       'api::eventdate.eventdate': ApiEventdateEventdate;
+      'api::imagetextsection.imagetextsection': ApiImagetextsectionImagetextsection;
       'api::lecture.lecture': ApiLectureLecture;
       'api::lecturepart.lecturepart': ApiLecturepartLecturepart;
       'api::order.order': ApiOrderOrder;
+      'api::partner.partner': ApiPartnerPartner;
+      'api::specialty.specialty': ApiSpecialtySpecialty;
+      'api::tiktok.tiktok': ApiTiktokTiktok;
       'api::webinar.webinar': ApiWebinarWebinar;
     }
   }

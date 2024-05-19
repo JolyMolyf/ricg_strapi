@@ -20,6 +20,9 @@
       "relation": "manyToOne",
       "target": "api::webinar.webinar",
       "inversedBy": "event_dates"
+    },
+    "url": {
+      "type": "string"
     }
   }
 }

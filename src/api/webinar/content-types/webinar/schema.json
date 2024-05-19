@@ -34,6 +34,27 @@
       "relation": "oneToMany",
       "target": "api::eventdate.eventdate",
       "mappedBy": "webinar"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "redeemedPrice": {
+      "type": "integer"
+    },
+    "cardPoints": {
+      "type": "json"
+    },
+    "bulletPoints": {
+      "type": "json"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "webinars"
+    },
+    "audience": {
+      "type": "richtext"
     }
   }
 }
