@@ -1,5 +1,8 @@
 module.exports = ({ env }) => ({
     // ...
+    "strapi-google-auth": {
+      enabled: true,
+    },
     email: {
       config: {
         provider: 'nodemailer',
