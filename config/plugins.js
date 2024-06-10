@@ -1,5 +1,22 @@
 module.exports = ({ env }) => ({
     // ...
+    email: {
+      config: {
+        provider: 'nodemailer',
+        providerOptions: {
+          host: env('SMPT_SERVER', 'smtp.example.com'),
+          port: env('SMTP_PORT', 587),
+          auth: {
+            user: env('SENDER_EMAIL'),
+            pass: env('SENDER_PASSWORD'),
+          },
+        },
+        settings: {
+          defaultFrom: 'info@szkolenia.ricg.eu',
+          defaultReplyTo: 'info@szkolenia.ricg.eu',
+        },
+      },
+    },
     upload: {
       config: {
         provider: 'cloudinary',
