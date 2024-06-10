@@ -20,6 +20,33 @@
     },
     "title": {
       "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "key": {
+      "type": "string"
+    },
+    "previewImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "files": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

@@ -870,6 +870,12 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
       'oneToMany',
       'api::webinar.webinar'
     >;
+    lectures: Attribute.Relation<
+      'api::author.author',
+      'oneToMany',
+      'api::lecture.lecture'
+    >;
+    additionalfiles: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -881,6 +887,43 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::author.author',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiContactinfoContactinfo extends Schema.SingleType {
+  collectionName: 'contactinfos';
+  info: {
+    singularName: 'contactinfo';
+    pluralName: 'contactinfos';
+    displayName: 'ContactInfo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    phoneNumber: Attribute.String;
+    email: Attribute.String;
+    adress: Attribute.String;
+    tiktokLink: Attribute.String;
+    instaLink: Attribute.String;
+    facebookLink: Attribute.String;
+    regulation: Attribute.Media;
+    rodo: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contactinfo.contactinfo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contactinfo.contactinfo',
       'oneToOne',
       'admin::user'
     > &
@@ -1032,6 +1075,12 @@ export interface ApiLectureLecture extends Schema.CollectionType {
     >;
     price: Attribute.Integer;
     redeemedPrice: Attribute.Integer;
+    author: Attribute.Relation<
+      'api::lecture.lecture',
+      'manyToOne',
+      'api::author.author'
+    >;
+    audience: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1068,6 +1117,10 @@ export interface ApiLecturepartLecturepart extends Schema.CollectionType {
       'api::lecture.lecture'
     >;
     title: Attribute.String;
+    description: Attribute.RichText;
+    key: Attribute.String;
+    previewImage: Attribute.Media;
+    files: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1113,6 +1166,11 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'api::order.order',
       'oneToMany',
       'api::ebook.ebook'
+    >;
+    user: Attribute.Relation<
+      'api::order.order',
+      'manyToOne',
+      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1294,6 +1352,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::strapi-google-auth.google-credential': PluginStrapiGoogleAuthGoogleCredential;
       'api::author.author': ApiAuthorAuthor;
+      'api::contactinfo.contactinfo': ApiContactinfoContactinfo;
       'api::ebook.ebook': ApiEbookEbook;
       'api::eventdate.eventdate': ApiEventdateEventdate;
       'api::imagetextsection.imagetextsection': ApiImagetextsectionImagetextsection;

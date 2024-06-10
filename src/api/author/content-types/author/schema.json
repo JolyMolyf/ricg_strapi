@@ -44,6 +44,22 @@
       "relation": "oneToMany",
       "target": "api::webinar.webinar",
       "mappedBy": "author"
+    },
+    "lectures": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::lecture.lecture",
+      "mappedBy": "author"
+    },
+    "additionalfiles": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

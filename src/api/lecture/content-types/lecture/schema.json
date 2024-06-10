@@ -40,6 +40,15 @@
     },
     "redeemedPrice": {
       "type": "integer"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "lectures"
+    },
+    "audience": {
+      "type": "richtext"
     }
   }
 }
