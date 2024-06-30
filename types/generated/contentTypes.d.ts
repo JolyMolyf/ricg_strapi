@@ -993,6 +993,7 @@ export interface ApiEventdateEventdate extends Schema.CollectionType {
       'api::webinar.webinar'
     >;
     url: Attribute.String;
+    callendlyUrl: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1289,7 +1290,7 @@ export interface ApiWebinarWebinar extends Schema.CollectionType {
   info: {
     singularName: 'webinar';
     pluralName: 'webinars';
-    displayName: 'Webinar';
+    displayName: 'Konsultacje Indywidualne';
     description: '';
   };
   options: {

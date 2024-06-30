@@ -23,6 +23,9 @@
     },
     "url": {
       "type": "string"
+    },
+    "callendlyUrl": {
+      "type": "string"
     }
   }
 }
