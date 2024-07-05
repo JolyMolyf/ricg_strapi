@@ -992,8 +992,8 @@ export interface ApiEventdateEventdate extends Schema.CollectionType {
       'manyToOne',
       'api::webinar.webinar'
     >;
-    url: Attribute.String;
-    callendlyUrl: Attribute.String;
+    joinUrl: Attribute.String;
+    eventUrl: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

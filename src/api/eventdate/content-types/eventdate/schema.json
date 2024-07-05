@@ -21,10 +21,10 @@
       "target": "api::webinar.webinar",
       "inversedBy": "event_dates"
     },
-    "url": {
+    "joinUrl": {
       "type": "string"
     },
-    "callendlyUrl": {
+    "eventUrl": {
       "type": "string"
     }
   }
