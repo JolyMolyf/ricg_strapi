@@ -1,7 +1,7 @@
 module.exports = ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337),
-  url: 'http://szkolenia.ricg.eu',
+  url: 'https://szkolenia.ricg.eu',
   app: {
     keys: env.array('APP_KEYS'),
   },
