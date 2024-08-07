@@ -1191,6 +1191,56 @@ export interface ApiOrderOrder extends Schema.CollectionType {
   };
 }
 
+export interface ApiPackagePackage extends Schema.CollectionType {
+  collectionName: 'packages';
+  info: {
+    singularName: 'package';
+    pluralName: 'packages';
+    displayName: 'Package';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    lectures: Attribute.Relation<
+      'api::package.package',
+      'oneToMany',
+      'api::lecture.lecture'
+    >;
+    ebooks: Attribute.Relation<
+      'api::package.package',
+      'oneToMany',
+      'api::ebook.ebook'
+    >;
+    webinars: Attribute.Relation<
+      'api::package.package',
+      'oneToMany',
+      'api::webinar.webinar'
+    >;
+    price: Attribute.Integer;
+    redeemedPrice: Attribute.Integer;
+    title: Attribute.String;
+    description: Attribute.Text;
+    coverImage: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::package.package',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::package.package',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPartnerPartner extends Schema.CollectionType {
   collectionName: 'partners';
   info: {
@@ -1360,6 +1410,7 @@ declare module '@strapi/types' {
       'api::lecture.lecture': ApiLectureLecture;
       'api::lecturepart.lecturepart': ApiLecturepartLecturepart;
       'api::order.order': ApiOrderOrder;
+      'api::package.package': ApiPackagePackage;
       'api::partner.partner': ApiPartnerPartner;
       'api::specialty.specialty': ApiSpecialtySpecialty;
       'api::tiktok.tiktok': ApiTiktokTiktok;
