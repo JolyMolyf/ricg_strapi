@@ -76,5 +76,27 @@ module.exports = createCoreController('api::order.order', ({strapi})=> ({
         transporter.use('compile', hbs(handlebarsOptions))
         const info = await transporter.sendMail(mailOptions);
         console.log(info.response, info.rejected, info.accepted);
+    },
+
+    async sendSheduleNotificationMail (ctx) {
+        const body = ctx.request.body;
+        const transporter = createTransporter();
+        const context = {
+
+        }
+        const mailOptions = createMailOptions(body.email, `Appointment sheduled! ${body.titleTheme}`, '', context, []);
+        const info = await transporter.sendMail(mailOptions);
+        console.log(info.response, info.rejected, info.accepted);
+    },
+
+    async sendBoughtNotificationMail (ctx) {
+        const body = ctx.request.body;
+        const transporter = createTransporter();
+        const context = {
+
+        }
+        const mailOptions = createMailOptions(body.email, `Bought products: ${body.bought}`, '', context, []);
+        const info = await transporter.sendMail(mailOptions);
+        console.log(info.response, info.rejected, info.accepted);
     }
 }));

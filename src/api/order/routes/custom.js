@@ -16,5 +16,21 @@ module.exports = {
           auth: false,
         },
       },
+      {
+        method: 'POST',
+        path: '/send/notification/bought',
+        handler: 'order.sendBoughtNotificationMail',
+        config: {
+          auth: false,
+        },
+      },
+      {
+        method: 'POST',
+        path: '/send/notification/shedule',
+        handler: 'order.sendSheduleNotificationMail',
+        config: {
+          auth: false,
+        },
+      },
     ],
   };
